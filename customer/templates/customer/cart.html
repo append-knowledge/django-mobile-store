@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{%extends 'customer/base.html'%}
+{%block body_block%}
+
+<div class="row ">
+    {%for order in orders%}
+
+    <div class="col-4 mt-5" >
+        <div class="card" style="width:18rem;">
+            <div class="card-header">
+               <ul>
+                   <img src="{{order.products.image.url}}" style="height:150px; width:200px;" alt="">
+               </ul>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{order.user}}</li>
+                <li class="list-group-item">{{order.products}}</li>
+                <li class="list-group-item">{{order.address}}</li>
+                <li class="list-group-item">{{order.phone_number}}</li>
+                <li class="list-group-item">{{order.delivery_date}}</li>
+
+
+                <li class="list-group-item">{{order.status}}</li>
+                <ul>
+                    <a href="{%url 'removeorder' order.id %}" class="btn btn-danger align-center">cancel</a>
+                </ul>
+            </ul>
+
+        </div>
+
+    </div>
+     {%endfor%}
+
+</div>
+
+
+{%endblock%}

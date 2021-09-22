@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{%static 'css/mobilelist.css'%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-warning">FIND</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 mt-5">
+            <table class="table">
+                <tr>
+                    <td>ID</td>
+                    <td>img</td>
+                    <td>COMPANY</td>
+
+                    <td>MODEL NAME</td>
+
+                    <td>COLOUR</td>
+                    <td>PRICE</td>
+                    <td>AVAILABLE PIECE</td>
+                    <td>ACTION</td>
+                </tr>
+
+                {%for mobile in mobiles %}
+                <tr>
+                    <td>{{mobile.id}}</td>
+                    <td><img src="{{mobile.image.url}}" style="height:100px" alt=""></td>
+                    <td>{{mobile.company}}</td>
+
+                    <td>{{mobile.model_name}}</td>
+                    <td>{{mobile.colour}}</td>
+                    <td>{{mobile.price}}</td>
+                    <td>{{mobile.available_pieces}}</td>
+                    <td>
+                        <a href="{%url 'mobiledetails' mobile.id %}" class="btn btn-primary">VIEW</a>
+                        <a href="{%url 'mobiledelete' mobile.id%}"class="btn btn-primary">DELETE</a>
+                        <a href="{%url 'mobileupdate' mobile.id%}" class="btn btn-primary">EDIT</a>
+
+                    </td>
+                </tr>
+                {%endfor%}
+
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+</body>
+</html>
